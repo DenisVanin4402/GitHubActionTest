@@ -55,3 +55,20 @@ jobs:
       run: |
         echo "This job runs after hello-job is completed!"
         echo "Status of hello-job: success!"
+  test-with-node:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    # Устанавливаем Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    # Создаем простой JS файл и выполняем его
+    - name: Run JavaScript
+      run: |
+        echo 'console.log("Hello from Node.js in GitHub Actions!");' > hello.js
+        node hello.js
+        
